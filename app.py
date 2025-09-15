@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 
 app = Flask(__name__)
-app.secret_key = "replace_with_a_random_secret"
+app.secret_key = "dev-secret-key"
 
 # ---- configure your DB connection ----
 DB_CONFIG = {
@@ -13,7 +13,6 @@ DB_CONFIG = {
     "database": "student_db",
     "port": 3306
 }
-
 
 def get_connection():
     try:
@@ -141,5 +140,8 @@ def delete_student(student_id):
     return redirect(url_for("index"))
 
 
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=8080)
